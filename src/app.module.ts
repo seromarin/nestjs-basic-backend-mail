@@ -13,7 +13,7 @@ import { SendModule } from './send/send.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: '../db/mail.sqlite',
+      database: '../db/mail-test.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
@@ -26,5 +26,5 @@ import { SendModule } from './send/send.module';
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private connection: Connection) {}
+  // constructor(private connection: Connection) {}
 }
