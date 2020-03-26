@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { LoginModule } from './login/login.module';
 import { InboxModule } from './inbox/inbox.module';
+import { SentModule } from './sent/sent.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { InboxModule } from './inbox/inbox.module';
       database: '../db/mail.sqlite'
     }),
     LoginModule,
-    InboxModule
+    InboxModule,
+    SentModule
   ],
   controllers: [AppController],
   providers: [AppService],
