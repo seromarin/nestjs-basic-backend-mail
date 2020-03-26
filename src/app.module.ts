@@ -7,6 +7,7 @@ import { Connection } from 'typeorm';
 import { LoginModule } from './login/login.module';
 import { InboxModule } from './inbox/inbox.module';
 import { SentModule } from './sent/sent.module';
+import { SendModule } from './send/send.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { SentModule } from './sent/sent.module';
     }),
     LoginModule,
     InboxModule,
-    SentModule
+    SentModule,
+    SendModule
   ],
   controllers: [AppController],
   providers: [AppService],
