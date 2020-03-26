@@ -17,7 +17,7 @@ export class SentController {
         return await this.sentService.getAllMails(mailito);
     }
 
-    @Get(':id')
+    @Get(':mailito/:id')
     async getMail(
         @Param('id') id,
     ): Promise<any> {

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { InboxService } from './inbox.service';
 import { Mail } from 'src/entities/mail.entity';
 import { identity } from 'rxjs';
@@ -27,6 +27,16 @@ export class InboxController {
     async createMail(@Body() mailData: Mail): Promise<any> {
         console.log({ mailData })
         return this.inboxService.createNewMail(mailData);
+    }
+
+    @Delete('delete/:id')
+    async deleteMail(@Param('id') id) {
+        return await this.inboxService.deleteMailByID(id);
+    }
+
+    @Put('/favorite/:id')
+    updateMailFav(@Param('id') id): Promise<Mail> {
+        return this.inboxService.updateMailFav(id);
     }
 
 }

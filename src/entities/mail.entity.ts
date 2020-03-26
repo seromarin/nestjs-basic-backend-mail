@@ -18,4 +18,7 @@ export class Mail {
     @Column()
     sender: string;
 
+    @Column({default: false})
+    favorite: boolean;
+
 }

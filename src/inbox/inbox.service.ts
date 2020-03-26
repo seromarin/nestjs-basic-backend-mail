@@ -14,12 +14,24 @@ export class InboxService {
         return await this.mailRepository.find();
     }
 
-    async getMail(mailID: number) {
+    async getMail(mailID: number): Promise<Mail> {
         return await this.mailRepository.findOne(mailID)
     }
 
-    async createNewMail(newMail: Mail) {
+    async createNewMail(newMail: Mail): Promise<Mail> {
         return await this.mailRepository.save(newMail);
+    }
+
+    async updateMailFav(mailID: number): Promise<Mail> {
+        const mailToUpdate = await this.getMail(mailID);
+        mailToUpdate.favorite = !mailToUpdate.favorite;
+        this.mailRepository.update(mailID, mailToUpdate)
+        return mailToUpdate;
+    }
+
+    async deleteMailByID(mailID) {
+        this.mailRepository.delete(mailID)
+        return await this.getAllMails()
     }
 
 }
