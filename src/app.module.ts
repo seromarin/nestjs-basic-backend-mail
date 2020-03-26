@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { LoginModule } from './login/login.module';
+import { InboxModule } from './inbox/inbox.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { LoginModule } from './login/login.module';
       type: 'sqlite',
       database: '../db/mail.sqlite'
     }),
-    LoginModule
+    LoginModule,
+    InboxModule
   ],
   controllers: [AppController],
   providers: [AppService],
