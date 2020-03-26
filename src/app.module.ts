@@ -3,11 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { LoginModule } from './login/login.module';
 import { InboxModule } from './inbox/inbox.module';
 import { SentModule } from './sent/sent.module';
-import { SendModule } from './send/send.module';
 
 @Module({
   imports: [
@@ -19,8 +17,7 @@ import { SendModule } from './send/send.module';
     }),
     LoginModule,
     InboxModule,
-    SentModule,
-    SendModule
+    SentModule
   ],
   controllers: [AppController],
   providers: [AppService],
