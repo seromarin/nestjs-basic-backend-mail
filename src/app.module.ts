@@ -13,7 +13,9 @@ import { SendModule } from './send/send.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: '../db/mail.sqlite'
+      database: '../db/mail.sqlite',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true
     }),
     LoginModule,
     InboxModule,
