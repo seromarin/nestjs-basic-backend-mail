@@ -34,4 +34,11 @@ export class InboxService {
         return await this.getAllMails()
     }
 
+    async deleteMultipleMails(mailIDs: string[]) {
+        for (const id of mailIDs) {
+            this.mailRepository.delete(id)
+        }
+        return await this.getAllMails()
+    }
+
 }

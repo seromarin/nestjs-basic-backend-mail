@@ -29,6 +29,12 @@ export class InboxController {
         return this.inboxService.createNewMail(mailData);
     }
 
+    @Delete('delete')
+    async deleteMultipleMail(@Body() mailIDs: string[]) {
+        // console.log(mailIDs['ids']);
+        return await this.inboxService.deleteMultipleMails(mailIDs['ids']);
+    }
+
     @Delete('delete/:id')
     async deleteMail(@Param('id') id) {
         return await this.inboxService.deleteMailByID(id);
