@@ -11,9 +11,8 @@ export class InboxController {
     ) {}
 
     @Get()
-    async index(@Headers() userEmail): Promise<Mail[]> {
-        console.log({userEmail});
-        return await this.inboxService.getAllMails('userEmail');
+    async index(@Headers() userEmail: string): Promise<Mail[]> {
+        return await this.inboxService.getAllMails(userEmail);
     }
 
     @Get(':id')
