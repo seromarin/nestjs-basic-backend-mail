@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Headers } from '@nestjs/common';
 import { InboxService } from './inbox.service';
 import { Mail } from 'src/entities/mail.entity';
 import { identity } from 'rxjs';
@@ -11,8 +11,8 @@ export class InboxController {
     ) {}
 
     @Get()
-    async index(): Promise<Mail[]> {
-        return await this.inboxService.getAllMails();
+    async index(@Headers('user-email') userEmail: string): Promise<Mail[]> {
+        return await this.inboxService.getAllMails(userEmail);
     }
 
     @Get(':id')
@@ -30,14 +30,14 @@ export class InboxController {
     }
 
     @Delete('delete')
-    async deleteMultipleMail(@Body() mailIDs: string[]) {
+    async deleteMultipleMail(@Body() mailIDs: string[], @Headers('User-Email') userEmail: string) {
         // console.log(mailIDs['ids']);
-        return await this.inboxService.deleteMultipleMails(mailIDs['ids']);
+        return await this.inboxService.deleteMultipleMails(mailIDs['ids'], userEmail);
     }
 
     @Delete('delete/:id')
-    async deleteMail(@Param('id') id) {
-        return await this.inboxService.deleteMailByID(id);
+    async deleteMail(@Param('id') id, @Headers('User-Email') userEmail: string) {
+        return await this.inboxService.deleteMailByID(id, userEmail);
     }
 
     @Put('/favorite/:id')
